@@ -1,19 +1,46 @@
 <template>
   <div class="publish">
-    <!-- 输入任意文本 -->
-    <van-field v-model="title" label="任务类型" placeholder="请输入任务类型"/>
-    <!-- 输入手机号，调起手机号键盘 -->
-    <van-field v-model="tel" type="tel" label="联系方式" placeholder="请输入手机号" />
-    <van-field
-  v-model="message"
-  rows="2"
-  autosize
-  label="任务描述"
-  type="textarea"
-  maxlength="200"
-  placeholder="请输入任务描述"
-  show-word-limit
-/>
+    <van-row type="flex" justify="center">
+      <div>任务发布</div>
+    </van-row>
+    <van-row>
+      <!-- 输入任意文本 -->
+      <van-form @submit="onSubmit">
+        <van-field
+          v-model="title"
+          name="任务类型"
+          label="任务类型"
+          placeholder="任务类型"
+          :rules="[{ required: true, message: '请输入任务类型' }]"
+        />
+        <!-- 输入手机号，调起手机号键盘 -->
+        <van-field
+          v-model="tel"
+          type="tel"
+          name="联系方式"
+          label="联系方式"
+          placeholder="手机号"
+          :rules="[{ required: true, message: '请输入手机号' }]"
+        />
+        <van-field
+          v-model="message"
+          rows="2"
+          autosize
+          name="任务描述"
+          label="任务描述"
+          type="textarea"
+          maxlength="200"
+          placeholder="任务描述"
+          show-word-limit
+          :rules="[{ required: true, message: '请输入任务描述' }]"
+        />
+        <div style="margin: 16px">
+          <van-button round block type="info" native-type="submit"
+            >发布</van-button
+          >
+        </div>
+      </van-form>
+    </van-row>
   </div>
 </template>
 
@@ -21,15 +48,25 @@
 // @ is an alias to /src
 
 export default {
-  name: '',
-  components: {
-  },
   data() {
     return {
-      title:"",
-      tel:"",
-      message:"",
+      title: "",
+      tel: "",
+      message: "",
     };
   },
-}
+  methods: {
+    onSubmit(values) {
+      console.log("submit", values);
+    },
+  },
+};
 </script>
+
+<style scoped>
+.publish {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+</style>
