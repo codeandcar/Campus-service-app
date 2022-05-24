@@ -1,16 +1,16 @@
+//该文件用于创建Vuex中最为核心的store
 import Vue from 'vue'
+//引入Vuex
 import Vuex from 'vuex'
-
+import orderOptions from './order'
+import personOptions from './person'
+//应用Vuex插件
 Vue.use(Vuex)
 
-const store = new Vuex.Store({
-  state: {
-    count: 0
-  },
-  mutations: {
-    increment (state) {
-      state.count++
-    }
-  }
+//创建并暴露store
+export default new Vuex.Store({
+	modules:{
+		orderAbout:orderOptions,
+		personAbout:personOptions
+	}
 })
-

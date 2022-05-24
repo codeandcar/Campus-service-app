@@ -1,7 +1,7 @@
 <template>
   <div class="publish">
     <van-row type="flex" justify="center">
-      <div>任务发布</div>
+      <h1>任务发布</h1>
     </van-row>
     <van-row>
       <!-- 输入任意文本 -->
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import {mapState} from 'vuex'
 
 export default {
   data() {
@@ -55,9 +55,16 @@ export default {
       message: "",
     };
   },
+  computed:{
+    ...mapState('orderAbout',['orderlist']),
+    ...mapState('personAbout',['nowPerson'])
+  },
   methods: {
     onSubmit(values) {
-      console.log("submit", values);
+      /* console.log(this.title,this.tel,this.message);
+      console.log(values); */
+      const orderObj={title:this.title,tel:this.tel,message:this.message,taskOwner:this.nowPerson.username,taskTaker:'',state:'0'}
+      this.$store.commit('orderAbout/ADD_ORDER',orderObj)
     },
   },
 };

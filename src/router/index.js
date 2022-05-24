@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import SearchView from '../views/SearchView.vue'
-import MyView from '../views/MyView.vue'
+import PersonView from '../views/PersonView.vue'
 import PublishView from '../views/PublishView.vue'
 
 Vue.use(VueRouter)
@@ -13,9 +13,9 @@ const routes = [
     component: SearchView
   },
   {
-    path: '/my',
-    name: 'my',
-    component: MyView
+    path: '/person',
+    name: 'person',
+    component: PersonView
   },
   {
     path: '/publish',
