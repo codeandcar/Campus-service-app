@@ -8,11 +8,11 @@ export default {
         //添加订单到订单数组中
         ADD_ORDER(state,value){
             state.orderlist.unshift(value);
-            console.log(state.orderlist);
+            // console.log(state.orderlist);
         },
         //将订单状态改为已接受
         ACCEPT_ORDER(state,acceptObj){
-            //console.log(acceptObj);
+            console.log(acceptObj);
             state.orderlist[acceptObj.index].state=1;
             state.orderlist[acceptObj.index].taker=acceptObj.taker;
             

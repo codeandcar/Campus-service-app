@@ -1,5 +1,6 @@
 <template>
   <div class="my">
+    <!-- 登录注册界面 -->
     <div class="login" v-show="!isLogin">
       <div style="height: 5rem"></div>
       <van-row type="flex" justify="center" align="center">
@@ -43,7 +44,9 @@
         </van-form>
       </van-row>
     </div>
+    <!-- 我的界面 -->
     <div class="mytask" v-show="isLogin">
+      <!-- 头像和用户名 -->
       <van-row type="flex" align="center">
         <van-col offset="2" span="8">
           <van-image
@@ -58,6 +61,7 @@
         </van-col>
         <van-col offset="2" span="8"> 你好，{{ nowPerson.username }} </van-col>
       </van-row>
+      <!-- 各种任务数量统计 -->
       <van-row>
         <van-grid column-num="3">
           <van-grid-item type="flex" justify="center">
@@ -77,6 +81,7 @@
           </van-grid-item>
         </van-grid>
       </van-row>
+      <!-- 任务详情 -->
       <van-collapse v-model="activeNames" accordion>
         <van-collapse-item title="我的发布" name="1">
           <van-collapse v-model="activeNames2" accordion>
@@ -179,9 +184,11 @@ export default {
     return {
       username: "",
       password: "",
+      //各种任务数统计
       pubCount: 0,
       accCount: 0,
       finCount: 0,
+      //不指定展开项
       activeNames: "",
       activeNames2: "",
       activeNames3: "",
@@ -196,7 +203,7 @@ export default {
     // console.log(this.pubCount,this.accCount,this.finCount);
   },
   methods: {
-    login() {
+    login() {//登录
       const personObj = { username: this.username, password: this.password };
       // console.log(personObj)
       this.$store.dispatch("personAbout/login",personObj); 
@@ -204,7 +211,7 @@ export default {
       // console.log(this.pubCount,this.accCount,this.finCount);
     },
       
-    register() {
+    register() {//注册
       const personObj = { username: this.username, password: this.password };
       // console.log(personObj)
       if (this.password != "" && this.username != "") {
@@ -212,20 +219,20 @@ export default {
         this.$toast.success("注册成功");
       }
     },
-    logout() {
+    logout() {//注销
       this.$store.commit("personAbout/LOGOUT");
     },
     onSubmit(values) {
       //van-form配套需要，其实没用
       //console.log('submit', values);
     },
-    cancel(index) {
+    cancel(index) {//取消任务
       //console.log(index)
       this.$store.commit("orderAbout/CONCEL_ORDER", index);
       this.ordercount();
       this.$toast.success("取消成功");
     },
-    finish(index) {
+    finish(index) {//完成任务
       //console.log(index)
       this.$store.commit("orderAbout/FINISH_ORDER", index);
       this.ordercount();
@@ -234,12 +241,12 @@ export default {
     /*onSubmit(values) {
       console.log("submit", values);
     }, */
-    giveup(index) {
+    giveup(index) {//放弃任务
       this.$store.commit("orderAbout/GIVEUP_ORDER", index);
       this.ordercount();
       this.$toast.success("放弃成功");
     },
-    ordercount() {
+    ordercount() {//统计任务数
       const orders = this.orderlist;
       this.pubCount = 0;
       this.accCount = 0;

@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div class="bar"></div>
+    <!-- 导航栏 -->
     <router-view/>
     <van-tabbar v-model="active" routo z-index="0">
       <van-tabbar-item replace to="/publish" icon="records">发布</van-tabbar-item>

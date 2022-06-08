@@ -8,12 +8,17 @@
       <van-row type="flex" justify="center">
         <h2>任务中心</h2>
       </van-row>
-
-      <van-swipe class="my-swipe" :autoplay="3000" indicator-color="black">
-        <van-swipe-item v-for="(item, index) in images" :key="index">
-          <img v-lazy="item" height="200px" width="100%"/>
-        </van-swipe-item>
-      </van-swipe>
+      <!-- 轮播图 -->
+      <van-row type="flex" justify="center">
+      <div class="image">
+        <van-swipe class="my-swipe" :autoplay="3000" indicator-color="black">
+          <van-swipe-item v-for="(item, index) in images" :key="index">
+            <img v-lazy="item" height="300px" width="100%" />
+          </van-swipe-item>
+        </van-swipe>
+      </div>
+      </van-row>
+      <!-- 任务分类及任务详情 -->
       <van-collapse v-model="activeNames" accordion>
         <van-collapse-item v-model="activeNames1" title="二手交易" name="1">
           <van-collapse v-model="activeName1" accordion>
@@ -242,7 +247,7 @@ export default {
     ...mapState("personAbout", ["isLogin", "nowPerson"]),
   },
   methods: {
-    onSubmit(index) {
+    onSubmit(index) {//接受任务，转到我的中的我的任务
       // console.log("recepit success")
       //console.log(this.index);
       const acceptObj = { index: index, taker: this.nowPerson.username };
@@ -261,14 +266,13 @@ export default {
     text-align: center;
     background-color: #fff;
 }
-.imageflex {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
 .home {
   height: 100%;
   width:100%;  
+}
+.image {
+  width:100%;
+  max-width:800px;
 }
 </style>
 

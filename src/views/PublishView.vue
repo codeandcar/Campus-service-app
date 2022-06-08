@@ -8,6 +8,7 @@
       <van-row type="flex" justify="center">
         <h2>任务发布</h2>
       </van-row>
+      <!-- 任务表单 -->
       <van-row>
         <!-- 输入任意文本 -->
         <van-form @submit="onSubmit">
@@ -96,7 +97,7 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      title: "",
+      title: "",//表单中对应的各种信息
       tel: "",
       type: "",
       money: "",
@@ -110,7 +111,7 @@ export default {
     ...mapState("personAbout", ["isLogin", "nowPerson"]),
   },
   methods: {
-    onSubmit() {
+    onSubmit() {//提交任务
       /* console.log(this.title,this.tel,this.message);
       console.log(values); */
       const orderObj = {

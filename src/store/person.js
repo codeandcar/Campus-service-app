@@ -2,8 +2,8 @@
 export default {
 	namespaced:true,
 	actions:{
-		login(context,person){
-			//console.log(person)
+		login(context,person){//登录
+			// console.log(person)
 			let flag=false;
 			const people=context.state.personList;
 			for(let i=0;i<people.length;i++){
@@ -17,25 +17,25 @@ export default {
 		}
 	},
     mutations:{
-		LOGIN(state,person){
+		LOGIN(state,person){//登录
 			state.nowPerson=person;
 			state.isLogin=true;
 		},
-		LOGOUT(state){
+		LOGOUT(state){//登出
 			state.nowPerson="";
 			state.isLogin=false;
 		},
-		REGISTER(state,person){
+		REGISTER(state,person){//注册
 			state.personList.unshift(person);
 			// console.log(state.personList);
 		}
 	},
 	state:{
-		personList:[
+		personList:[//用户列表
 			{username:'apple',password:'1234'}
 		],
-        nowPerson:"",
-		isLogin:false,
+        nowPerson:"",//当前用户
+		isLogin:false,//登录状态，用来判断页面是否显示
 	},
 	getters:{
 
