@@ -28,7 +28,7 @@ export default {
             state.orderlist.splice(index,1);
             // console.log(state.orderlist);
         },
-        //取消已发布未接受订单
+        //放弃未接受订单
         GIVEUP_ORDER(state,index){
             // console.log(state.orderlist,index);
             state.orderlist[index].state=0;
